@@ -2,8 +2,6 @@
 import { IJobType } from "@/types/jobType";
 import { validateJobType } from "@/types/JobTypeGuard";
 import { useRouter } from "next/navigation";
-import { BiArrowBack } from "react-icons/bi";
-import { BsHeart, BsHeartFill } from "react-icons/bs";
 import { Info } from "./Info";
 
 export function Card({ job }: { job: IJobType }) {
