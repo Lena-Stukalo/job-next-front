@@ -1,33 +1,15 @@
 "use client";
 import { IJobType } from "@/types/jobType";
-import { validateJobType } from "@/types/JobTypeGuard";
-import { useRouter } from "next/navigation";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { BiArrowBack } from "react-icons/bi";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
-
-export function Info({ job }: { job: IJobType }) {
-  const router = useRouter();
-
-  let favorites: IJobType[] = [];
-
-  let storagePars;
-  if (typeof window !== "undefined") {
-    const storage = localStorage.getItem("favoriteJobs");
-    storagePars = storage && JSON.parse(storage);
-  }
-
-  let IsFavs = false;
-
-  if (Array.isArray(storagePars)) {
-    IsFavs =
-      storagePars
-        .map((item) => validateJobType(item))
-        .filter((item) => !!item && item.job_id === job.job_id).length > 0;
-    favorites = storagePars
-      .map((item) => validateJobType(item))
-      .filter((item) => !!item);
-  }
-
+interface IInfo {
+  job: IJobType;
+  router: AppRouterInstance;
+  IsFavs: boolean;
+  favorites: IJobType[];
+}
+export function Info({ job, router, IsFavs, favorites }: IInfo) {
   return (
     <div className="p-4 -screen">
       <div className="flex justify-between">

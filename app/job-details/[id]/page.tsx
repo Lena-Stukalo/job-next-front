@@ -1,5 +1,5 @@
 import { validateJobType } from "@/types/JobTypeGuard";
-import { Info } from "./Info";
+import { Card } from "./card";
 
 export default async function Details({ params }: { params: { id: string } }) {
   const { data } = await fetch(
@@ -15,6 +15,6 @@ export default async function Details({ params }: { params: { id: string } }) {
   }
   const job = validateJobType(data[0]);
   if (job) {
-    return <Info job={job} />;
+    return <Card job={job}  />;
   }
 }
