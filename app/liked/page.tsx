@@ -1,24 +1,20 @@
-
-"use client"
-import { JobList } from "@/components/list/JobsList"
-import { IJobType } from "@/types/jobType";
-import { validateJobType } from "@/types/JobTypeGuard"
+"use client";
+import { JobList } from "@/components/list/JobsList";
+import { validateJobType } from "@/types/JobTypeGuard";
 
 export default function Favorite() {
-  let storagePars
+  let storagePars;
   if (typeof window !== "undefined") {
-    const data = localStorage.getItem("favoriteJobs")
+    const data = localStorage.getItem("favoriteJobs");
     storagePars = data && JSON.parse(data);
-    console.log(storagePars)
+    console.log(storagePars);
   }
- 
-  if(Array.isArray(storagePars)){
-    const jobs = storagePars.map((item)=>validateJobType(item))
-    
-      return (
-          <JobList data={jobs.filter((item)=>item!==false)}/>
-      );
-    }else{
-    <h1>Errors</h1> 
-    }
+
+  if (Array.isArray(storagePars)) {
+    const jobs = storagePars.map((item) => validateJobType(item));
+
+    return <JobList data={jobs.filter((item) => item !== false)} />;
+  } else {
+    <h1>Errors</h1>;
+  }
 }
