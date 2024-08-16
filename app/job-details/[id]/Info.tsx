@@ -7,13 +7,17 @@ import { BsHeart, BsHeartFill } from "react-icons/bs";
 
 export function Info({ job }: { job: IJobType }) {
   const router = useRouter();
+
   let favorites: IJobType[] = [];
+
   let storagePars;
   if (typeof window !== "undefined") {
     const storage = localStorage.getItem("favoriteJobs");
     storagePars = storage && JSON.parse(storage);
   }
+
   let IsFavs = false;
+
   if (Array.isArray(storagePars)) {
     IsFavs =
       storagePars

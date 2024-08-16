@@ -1,28 +1,30 @@
-"use client"
+"use client";
 import React from "react";
 import { useFormik } from "formik";
-import { RegisterForm, RegisterFormValues } from "@/components/form/RegisterForm";
-
+import { RegisterForm } from "@/components/form/RegisterForm";
+import { RegisterFormValues } from "@/types/profile";
+import { Notify } from "notiflix";
 
 const RegisterPageContainer = () => {
-
-  const handeleSubmit = async (values:RegisterFormValues) => {
-    console.log(values)
+  const handeleSubmit = async (
+    values: RegisterFormValues,
+    { resetForm }: { resetForm: () => void }
+  ) => {
+    localStorage.setItem("profile", JSON.stringify(values));
+    resetForm();
+    Notify.success(`Profile created`);
   };
-  const formValues = {
+  let formValues = {
     name: "",
     email: "",
-    password: "",
+    job_Desired: "",
+    about: "",
   };
 
   const formik = useFormik({
     initialValues: formValues,
     onSubmit: handeleSubmit,
   });
-  return (
-      <RegisterForm
-       {...formik}
-      />
-  );
+  return <RegisterForm {...formik} />;
 };
 export default RegisterPageContainer;

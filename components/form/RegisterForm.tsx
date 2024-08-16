@@ -1,22 +1,17 @@
+import { RegisterFormValues } from "@/types/profile";
 import { FormikProps } from "formik/dist/types";
-
-export interface RegisterFormValues {
-  name: string;
-  email: string;
-  password: string;
-}
 
 export const RegisterForm = ({
   handleChange,
   handleSubmit,
   values,
 }: FormikProps<RegisterFormValues>) => (
-  <form onSubmit={handleSubmit}>
-    <h1>Sign In</h1>
-    <label htmlFor="name" className="flex my-2">
+  <form onSubmit={handleSubmit} className="w-3/6 mx-auto">
+    <h1 className="text-center">Sign In</h1>
+    <label htmlFor="name" className="flex my-2 justify-between">
       Name
       <input
-        className="text-cyan-950 block ml-4"
+        className="text-cyan-950 block ml-4 min-w-64"
         type="text"
         name="name"
         id="name"
@@ -25,10 +20,23 @@ export const RegisterForm = ({
         value={values.name}
       />
     </label>
-    <label htmlFor="email" className="flex my-2">
+    <label htmlFor="job_Desired" className="flex my-2 justify-between">
+      Desired job
+      <input
+        className="text-cyan-950 block ml-4 min-w-64"
+        type="text"
+        name=""
+        id="job_Desired"
+        required
+        onChange={handleChange}
+        value={values.job_Desired}
+      />
+    </label>
+
+    <label htmlFor="email" className="flex my-2 justify-between">
       E-mail
       <input
-        className="text-cyan-950 block ml-4"
+        className="text-cyan-950 block ml-4 min-w-64"
         type="text"
         name="email"
         id="email"
@@ -37,18 +45,23 @@ export const RegisterForm = ({
         value={values.email}
       />
     </label>
-    <label htmlFor="password" className="flex my-2">
-      Password
-      <input
-        className="text-cyan-950 block ml-4"
-        type="password"
-        name="password"
-        id="password"
+
+    <label htmlFor="about" className="flex my-2 justify-between">
+      About you
+      <textarea
+        className="text-cyan-950 block ml-4 min-w-64"
+        name=""
+        id="about"
         required
         onChange={handleChange}
-        value={values.password}
+        value={values.about}
       />
     </label>
-    <button type="submit">Register</button>
+    <button
+      type="submit"
+      className=" block mx-auto bg-cyan-700 p-2 cursor-pointer rounded-lg"
+    >
+      Register
+    </button>
   </form>
 );

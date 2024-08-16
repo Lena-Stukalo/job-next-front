@@ -1,5 +1,5 @@
 import { NavLink } from "@/components/NavLink";
-import { Search } from "./form/Search";
+
 
 export default function Header() {
   const navLinks = [
@@ -15,7 +15,6 @@ export default function Header() {
           return <NavLink {...link} key={link.link} />;
         })}
       </nav>
-      <Search />
     </header>
   );
 }

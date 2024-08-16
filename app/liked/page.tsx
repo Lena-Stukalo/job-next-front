@@ -7,7 +7,6 @@ export default function Favorite() {
   if (typeof window !== "undefined") {
     const data = localStorage.getItem("favoriteJobs");
     storagePars = data && JSON.parse(data);
-    console.log(storagePars);
   }
 
   if (Array.isArray(storagePars)) {
